@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
         try {
           for await (const chunk of result.stream) {
             const chunkText = chunk.text();
-            controller.enqueue(encoder.encode(`data: ${chunkText}\n\n`));
+            controller.enqueue(encoder.encode(`${chunkText}`));
           }
           controller.close();
         } catch (error) {
